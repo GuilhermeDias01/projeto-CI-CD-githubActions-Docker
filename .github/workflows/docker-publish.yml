@@ -3,7 +3,7 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - main  # ou outra branch que desejar
+      - main
 
 jobs:
   build-and-push:
@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build da imagem Docker
-        run: docker build -t meu-projeto:latest .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/meu-projeto:latest .
 
       - name: Push para o Docker Hub
-        run: docker push meu-projeto:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/meu-projeto:latest
